@@ -618,7 +618,7 @@ Transform:
   m_GameObject: {fileID: 920307645}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.97, y: 1.437, z: -4.206}
+  m_LocalPosition: {x: 4.97, y: 1.437, z: -3.705}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -634,6 +634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1263288339}
   - component: {fileID: 1263288340}
+  - component: {fileID: 1263288341}
   m_Layer: 0
   m_Name: CamHolder
   m_TagString: Untagged
@@ -650,7 +651,7 @@ Transform:
   m_GameObject: {fileID: 1263288338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.487071, y: 1.1658179, z: 0.37125602}
+  m_LocalPosition: {x: -9.144, y: 1.836, z: 0.944}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -669,6 +670,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554d14b1ff7ac6c41b929f5dfc94627b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1263288341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263288338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e9603e31cb83645a1d1668145c8ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPosition: {fileID: 920307646}
 --- !u!1 &1662568038
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,6 +834,7 @@ GameObject:
   - component: {fileID: 1823688466}
   - component: {fileID: 1823688465}
   - component: {fileID: 1823688468}
+  - component: {fileID: 1823688469}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -895,7 +910,7 @@ Transform:
   m_GameObject: {fileID: 1823688464}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.337071, y: -0.16581786, z: -10.371256}
+  m_LocalPosition: {x: 4.4870706, y: 0.83418214, z: -4.371256}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1040,6 +1055,21 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!114 &1823688469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823688464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e528bb184db061f4686807ece6969902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensX: 400
+  sensY: 400
+  orientation: {fileID: 1662568039}
 --- !u!1 &2013410473
 GameObject:
   m_ObjectHideFlags: 1
