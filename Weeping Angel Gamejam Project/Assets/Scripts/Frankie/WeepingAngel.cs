@@ -1,8 +1,4 @@
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-
-"using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -46,4 +42,3 @@ public class WeepingAngel : MonoBehaviour
         SceneManager.LoadScene(sceneAfterDeath);
     }
 }
-"
