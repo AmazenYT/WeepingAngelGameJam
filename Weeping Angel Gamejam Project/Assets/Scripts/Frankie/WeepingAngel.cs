@@ -15,25 +15,26 @@ public class WeepingAngel : MonoBehaviour
     private void Update()
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCam);
+        bool isVisible = GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds);
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if (GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
+        if (isVisible)
         {
             ai.speed = 0;
-            ai.SetDestination(transform.position);
+            ai.SetDestination(transform.position); 
         }
-
-        if (GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
+        else
         {
             ai.speed = aiSpeed;
-            dest = player.position;
-            ai.destination = dest;
-            if (distance <= catchDistance)
-            {
-                player.gameObject.SetActive(false);
-                jumpscareCam.gameObject.SetActive(true);
-                StartCoroutine(killPlayer());
-            }
+            ai.SetDestination(player.position); 
+        }
+
+        
+        if (!isVisible && distance <= catchDistance)
+        {
+            player.gameObject.SetActive(false);
+            jumpscareCam.gameObject.SetActive(true);
+            StartCoroutine(killPlayer());
         }
     }
     IEnumerator killPlayer()
