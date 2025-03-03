@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class Camera : MonoBehaviour
 {
@@ -17,7 +15,7 @@ public class Camera : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false
+        Cursor.visible = false;
     }
 
     
