@@ -707,6 +707,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &688048524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 765510724157124687, guid: 471f250adbd6e1a45a6f98a57002907c, type: 3}
+  m_PrefabInstance: {fileID: 275480168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &941828219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4738897226587832532, guid: 471f250adbd6e1a45a6f98a57002907c, type: 3}
@@ -919,6 +924,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CamHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 4358880236650382218, guid: b477cc4798e24b64bb31337afc9f35cf, type: 3}
+      propertyPath: orientation
+      value: 
+      objectReference: {fileID: 688048524}
     - target: {fileID: 4703234350465089601, guid: b477cc4798e24b64bb31337afc9f35cf, type: 3}
       propertyPath: cameraPosition
       value: 
@@ -941,7 +950,7 @@ GameObject:
   - component: {fileID: 1677310267}
   - component: {fileID: 1677310266}
   - component: {fileID: 1677310270}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
