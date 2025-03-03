@@ -7,38 +7,58 @@ public class WeepingAngel : MonoBehaviour
 {
     public NavMeshAgent ai;
     public Transform player;
-    Vector3 dest;
     public Camera playerCam, jumpscareCam;
-    public float aiSpeed, catchDistance, jumpscareTime;
+    public float aiSpeed = 3.5f, catchDistance = 2f, jumpscareTime = 2f;
     public string sceneAfterDeath;
 
     private void Update()
     {
+        if (ai == null || player == null || playerCam == null || jumpscareCam == null)
+        {
+            Debug.LogError("Missing references in WeepingAngel script!");
+            return;
+        }
+
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCam);
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if (GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
+        // Check if the AI is in the player's view
+        if (GeometryUtility.TestPlanesAABB(planes, GetComponent<Renderer>().bounds))
         {
             ai.speed = 0;
-            ai.SetDestination(transform.position);
+            ai.SetDestination(transform.position);  // Stop moving
         }
-
-        if (GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
+        else
         {
             ai.speed = aiSpeed;
-            dest = player.position;
-            ai.destination = dest;
-            if (distance <= catchDistance)
-            {
-                player.gameObject.SetActive(false);
-                jumpscareCam.gameObject.SetActive(true);
-                StartCoroutine(killPlayer());
-            }
+            ai.SetDestination(player.position);  // Chase the player
+        }
+
+        // Catch player if close enough
+        if (distance <= catchDistance)
+        {
+            CatchPlayer();
         }
     }
-    IEnumerator killPlayer()
+
+    private void CatchPlayer()
+    {
+        player.gameObject.SetActive(false);
+        jumpscareCam.gameObject.SetActive(true);
+        StartCoroutine(KillPlayer());
+    }
+
+    IEnumerator KillPlayer()
     {
         yield return new WaitForSeconds(jumpscareTime);
-        SceneManager.LoadScene(sceneAfterDeath);
+
+        if (!string.IsNullOrEmpty(sceneAfterDeath))
+        {
+            SceneManager.LoadScene(sceneAfterDeath);
+        }
+        else
+        {
+            Debug.LogError("Scene name for death is not set in Inspector!");
+        }
     }
 }
