@@ -717,7 +717,6 @@ GameObject:
   - component: {fileID: 242289092}
   - component: {fileID: 242289091}
   - component: {fileID: 242289090}
-  - component: {fileID: 242289089}
   m_Layer: 0
   m_Name: KeyTest (2)
   m_TagString: Untagged
@@ -725,18 +724,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &242289089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242289088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f79da0e333462141acf165c9763b59b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &242289090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,7 +2277,6 @@ GameObject:
   - component: {fileID: 1705526446}
   - component: {fileID: 1705526445}
   - component: {fileID: 1705526444}
-  - component: {fileID: 1705526449}
   m_Layer: 0
   m_Name: KeyTest
   m_TagString: Untagged
@@ -2325,12 +2311,12 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.50000006
+  m_Height: 2.0000002
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1705526446
@@ -2401,18 +2387,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1705526449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705526443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f79da0e333462141acf165c9763b59b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1823688464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,7 +2900,6 @@ GameObject:
   - component: {fileID: 2120826406}
   - component: {fileID: 2120826405}
   - component: {fileID: 2120826404}
-  - component: {fileID: 2120826403}
   m_Layer: 0
   m_Name: KeyTest (1)
   m_TagString: Untagged
@@ -2934,18 +2907,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2120826403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120826402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f79da0e333462141acf165c9763b59b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2120826404
 MonoBehaviour:
   m_ObjectHideFlags: 0
