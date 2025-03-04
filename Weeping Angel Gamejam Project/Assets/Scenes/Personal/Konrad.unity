@@ -423,7 +423,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1148700695}
   - component: {fileID: 1148700694}
-  - component: {fileID: 1148700693}
   - component: {fileID: 1148700692}
   m_Layer: 0
   m_Name: Camera
@@ -571,14 +570,6 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!81 &1148700693
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1148700691}
-  m_Enabled: 1
 --- !u!20 &1148700694
 Camera:
   m_ObjectHideFlags: 0
@@ -890,7 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 738739331527131100, guid: 471f250adbd6e1a45a6f98a57002907c, type: 3}
       propertyPath: jumpForce
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 738739331527131100, guid: 471f250adbd6e1a45a6f98a57002907c, type: 3}
       propertyPath: jumpCooldown
@@ -898,7 +889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 738739331527131100, guid: 471f250adbd6e1a45a6f98a57002907c, type: 3}
       propertyPath: airMultiplier
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1647472395897415344, guid: 471f250adbd6e1a45a6f98a57002907c, type: 3}
       propertyPath: m_LocalPosition.x
