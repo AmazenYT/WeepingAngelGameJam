@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1647472395897415344}
   - component: {fileID: 6501439502229573669}
   - component: {fileID: 738739331527131100}
+  - component: {fileID: 146775549115725091}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -75,13 +76,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddf52ea94354064bb123ec47eedde8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  walkSpeed: 7
+  sprintSpeed: 15
+  crouchSpeed: 4
+  crouchYScale: 0.5
+  stamina: 10
+  sprintCooldown: 4
   groundDrag: 5
   orientation: {fileID: 765510724157124687}
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
+  grounded: 0
+  jumpForce: 20
+  jumpCooldown: 0.7
+  airMultiplier: 0.5
+  maxSlopeAngle: 40
+  jumpKey: 32
+  sprintKey: 304
+  crouchKey: 99
+  state: 0
+--- !u!114 &146775549115725091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527338711766128112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7bf15323d0fa949883f33ccc30acdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 765510724157124687}
+  playerObj: {fileID: 6687058441471776291}
+  maxSlideTime: 0.5
+  slideForce: 50
+  slideYScale: 0.5
+  slideKey: 306
 --- !u!1 &1443111518478816492
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +159,7 @@ GameObject:
   - component: {fileID: 1151171571821417824}
   - component: {fileID: 6169737962263727611}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: PlayerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 	private float moveSpeed;
 	public float walkSpeed;
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 	public Transform orientation;
 	public float playerHeight;
 	public LayerMask whatIsGround;
-	bool grounded;
+	public bool grounded;
 	public float jumpForce;
 	public float jumpCooldown;
 	public float airMultiplier;
@@ -139,7 +139,7 @@ public class Player : MonoBehaviour
 
 		if(OnSlope() && !exitingSlope)
 		{
-			rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+			rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
 
 			if(rb.linearVelocity.y > 0)
 			{
@@ -169,13 +169,6 @@ public class Player : MonoBehaviour
 		        }
 			}
 		}
-
-
-
-
-		
-
-
 	}
 
 	private void Jump()
@@ -194,7 +187,7 @@ public class Player : MonoBehaviour
 		exitingSlope = false;
 	}
 
-	private bool OnSlope()
+	public bool OnSlope()
 	{
 		if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
 		{
@@ -205,8 +198,8 @@ public class Player : MonoBehaviour
 		return false;
 	}
 
-	private Vector3 GetSlopeMoveDirection()
+	public Vector3 GetSlopeMoveDirection(Vector3 direction)
 	{
-		return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+		return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
 	}
 }
