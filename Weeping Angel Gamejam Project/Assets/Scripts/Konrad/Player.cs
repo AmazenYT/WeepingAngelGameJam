@@ -8,6 +8,11 @@ public class Player : MonoBehaviour
 	public float playerHeight;
 	public LayerMask whatIsGround;
 	bool grounded;
+	public float jumpForce;
+	public float jumpCooldown;
+	public float airMultiplier;
+	bool readyToJump;
+	public KeyCode jumpKey = KeyCode.Space;
 
 
 	float horizontalInput;
@@ -21,6 +26,7 @@ public class Player : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		rb.freezeRotation = true;
+		readyToJump = true;
 	}
 
 	private void Update()
@@ -37,6 +43,7 @@ public class Player : MonoBehaviour
 		}
 
 		MyInput();
+		SpeedControl();
 	}
 
 	private void FixedUpdate()
@@ -49,11 +56,50 @@ public class Player : MonoBehaviour
 	{
 		horizontalInput = Input.GetAxisRaw("Horizontal");
 		verticalInput = Input.GetAxisRaw("Vertical");
+
+		if(Input.GetKey(jumpKey) && readyToJump && grounded)
+		{
+			 readyToJump = false;
+			 Jump();
+			 Invoke(nameof(ResetJump), jumpCooldown);
+		}
 	}
 
 	private void MovePlayer()
 	{
 		moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-		rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+
+		if(grounded)
+		{
+		   rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+		}
+		else if(!grounded)
+		{
+			rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+		}
+	}
+
+	private void SpeedControl()
+	{
+		Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+		if (flatVel.magnitude > moveSpeed)
+		{
+			Vector3 limitedVel = flatVel.normalized * moveSpeed;
+			rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+		}
+	}
+
+	private void Jump()
+	{
+		rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+		rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+	}
+
+	private void ResetJump()
+	{
+		readyToJump = true;
 	}
 }
