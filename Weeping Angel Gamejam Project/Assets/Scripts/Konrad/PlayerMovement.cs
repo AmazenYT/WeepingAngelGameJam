@@ -24,8 +24,16 @@ public class PlayerMovement : MonoBehaviour
 	public KeyCode sprintKey = KeyCode.LeftShift;
 	public KeyCode crouchKey = KeyCode.LeftControl;
 
+	//For Footsteps//
+	public AudioSource footstepsSound;
+	public AudioSource sprintSound;
+	public KeyCode w = KeyCode.W;
+    public KeyCode a = KeyCode.A;
+    public KeyCode s = KeyCode.S;
+    public KeyCode d = KeyCode.D;
 
-	float horizontalInput;
+
+    float horizontalInput;
 	float verticalInput;
 
 	Vector3 moveDirection;
@@ -71,10 +79,28 @@ public class PlayerMovement : MonoBehaviour
 	private void FixedUpdate()
 	{
 		MovePlayer();
+
+		//For Walking and Sprinting Audio//
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+		{
+			footstepsSound.enabled = true;
+			if (Input.GetKey(KeyCode.LeftShift))
+			{
+                footstepsSound.enabled = false;
+				sprintSound.enabled = true;
+            }
+		}
+		else
+		{
+			footstepsSound.enabled = false;
+			sprintSound.enabled = false;
+		}
+
 	}
 
+ 
 
-	private void MyInput()
+    private void MyInput()
 	{
 		horizontalInput = Input.GetAxisRaw("Horizontal");
 		verticalInput = Input.GetAxisRaw("Vertical");
@@ -132,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 		   rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 		}
+
 		else if(!grounded)
 		{
 			rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
