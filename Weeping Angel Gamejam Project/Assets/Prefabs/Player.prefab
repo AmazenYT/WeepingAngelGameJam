@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 146775549115725091}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,8 +80,6 @@ MonoBehaviour:
   sprintSpeed: 15
   crouchSpeed: 4
   crouchYScale: 0.5
-  stamina: 10
-  sprintCooldown: 4
   groundDrag: 5
   orientation: {fileID: 765510724157124687}
   playerHeight: 2
@@ -96,6 +94,12 @@ MonoBehaviour:
   jumpKey: 32
   sprintKey: 304
   crouchKey: 99
+  footstepsSound: {fileID: 0}
+  sprintSound: {fileID: 0}
+  w: 119
+  a: 97
+  s: 115
+  d: 100
   state: 0
 --- !u!114 &146775549115725091
 MonoBehaviour:
