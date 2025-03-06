@@ -8,6 +8,8 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private float MaxUseDistance = 5f;
     [SerializeField] private LayerMask UseLayers;
 
+    public AudioSource DoorOpen;
+    public AudioSource DoorClose;
     public void OnUse()
     {
         if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
@@ -17,10 +19,14 @@ public class PlayerActions : MonoBehaviour
                 if (door.IsOpen)
                 {
                     door.Close();
+                    DoorClose.enabled = true;
+                    DoorOpen.enabled = false;
                 }
                 else
                 {
                     door.Open(transform.position);
+                    DoorOpen.enabled = true;
+                    DoorClose.enabled = false;
                 }
 
             }
