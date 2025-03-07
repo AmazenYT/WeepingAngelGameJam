@@ -7,6 +7,9 @@ public class WeepingAngel : MonoBehaviour
 {
     public NavMeshAgent ai;
     public Transform player;
+    //animation stuff
+    public Animator aiAnim;
+
     public Camera playerCam, jumpscareCam;
     public float aiSpeed, catchDistance, jumpscareTime;
     public string sceneAfterDeath;
@@ -56,6 +59,7 @@ public class WeepingAngel : MonoBehaviour
 
             if (isVisible)
             {
+                aiAnim.speed = 0;
                 ai.SetDestination(transform.position);
             }
             else
@@ -63,6 +67,7 @@ public class WeepingAngel : MonoBehaviour
                 if (NavMesh.CalculatePath(transform.position, player.position, NavMesh.AllAreas, path) && path.status == NavMeshPathStatus.PathComplete)
                 {
                     ai.SetDestination(player.position); // Move only if path is valid
+                    aiAnim.speed = 1;
                 }
                 else
                 {
