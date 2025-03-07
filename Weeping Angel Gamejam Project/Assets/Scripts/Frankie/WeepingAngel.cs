@@ -25,6 +25,11 @@ public class WeepingAngel : MonoBehaviour
 
     private NavMeshPath path; // Used for path validation
 
+    //For Audio//
+    public AudioSource MetalArmor;
+    public AudioSource HuntMusic;
+    public AudioSource BackGroundTrack;
+
     private void Start()
     {
         ai.speed = aiSpeed / 2;
@@ -45,12 +50,18 @@ public class WeepingAngel : MonoBehaviour
             isChasing = true;
             isRoaming = false;
             StopCoroutine(Roam());
+            MetalArmor.enabled = true;
+            HuntMusic.enabled = true;
+            BackGroundTrack.enabled = false;
         }
         else if (distance >= escapeDistance && !isRoaming)
         {
             isChasing = false;
             isRoaming = true;
             StartCoroutine(Roam());
+            MetalArmor.enabled = false;
+            HuntMusic.enabled = false;
+            BackGroundTrack.enabled = true;
         }
 
         if (isChasing)
@@ -61,6 +72,9 @@ public class WeepingAngel : MonoBehaviour
             {
                 aiAnim.speed = 0;
                 ai.SetDestination(transform.position);
+                MetalArmor.enabled = false;
+                HuntMusic.enabled = false;
+                BackGroundTrack.enabled = true;
             }
             else
             {
