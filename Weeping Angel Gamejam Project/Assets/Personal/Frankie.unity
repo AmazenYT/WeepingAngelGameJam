@@ -798,6 +798,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &335402037 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 540331233472187294, guid: 6ed9161efdf2c4b4e984cad853f54152, type: 3}
+  m_PrefabInstance: {fileID: 90251819958487679}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &432432459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3003,6 +3008,10 @@ PrefabInstance:
     - target: {fileID: 7748396719486274489, guid: 6ed9161efdf2c4b4e984cad853f54152, type: 3}
       propertyPath: jumpscareCam
       value: 
+      objectReference: {fileID: 335402037}
+    - target: {fileID: 7748396719486274489, guid: 6ed9161efdf2c4b4e984cad853f54152, type: 3}
+      propertyPath: catchDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7748396719486274489, guid: 6ed9161efdf2c4b4e984cad853f54152, type: 3}
       propertyPath: jumpscareTime
