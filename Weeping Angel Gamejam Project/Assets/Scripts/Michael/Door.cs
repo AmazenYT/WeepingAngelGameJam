@@ -6,39 +6,42 @@ public class Door : MonoBehaviour
     public bool IsOpen = false;
     [SerializeField] private bool IsRotatingDoor = true;
     [SerializeField] private float Speed = 1f;
-    //[Header("Rotation Configs")]
     [SerializeField] private float RotationAmount = 90f;
     [SerializeField] private float ForwardDirection = 0;
 
     private Vector3 StartRotation;
     private Vector3 Forward;
-
     private Coroutine AnimationCoroutine;
 
-    private void awake()
+    private void Awake()
     {
         StartRotation = transform.rotation.eulerAngles;
         Forward = transform.right;
-
     }
 
     public void Open(Vector3 UserPosition)
     {
-        if (!IsOpen)
+      
+        if (KeyManager.instance != null && KeyManager.instance.HasAllKeys())
         {
-            if (AnimationCoroutine != null)
+            if (!IsOpen)
             {
-                StopCoroutine(AnimationCoroutine);
-            }
+                if (AnimationCoroutine != null)
+                {
+                    StopCoroutine(AnimationCoroutine);
+                }
 
-            if (IsRotatingDoor)
-            {
-                float dot = Vector3.Dot(Forward, (UserPosition - transform.position).normalized);
-                AnimationCoroutine = StartCoroutine(DoRotationOpen(dot));
+                if (IsRotatingDoor)
+                {
+                    float dot = Vector3.Dot(Forward, (UserPosition - transform.position).normalized);
+                    AnimationCoroutine = StartCoroutine(DoRotationOpen(dot));
+                }
             }
-
         }
-
+        else
+        {
+            Debug.Log("You need all keys to open this door!");
+        }
     }
 
     private IEnumerator DoRotationOpen(float ForwardAmount)
@@ -50,7 +53,6 @@ public class Door : MonoBehaviour
         {
             endRotation = Quaternion.Euler(new Vector3(0, StartRotation.y - RotationAmount, 0));
         }
-
         else
         {
             endRotation = Quaternion.Euler(new Vector3(0, StartRotation.y + RotationAmount, 0));
@@ -81,7 +83,6 @@ public class Door : MonoBehaviour
                 AnimationCoroutine = StartCoroutine(DoRotationClose());
             }
         }
-
     }
 
     private IEnumerator DoRotationClose()
@@ -99,9 +100,4 @@ public class Door : MonoBehaviour
             time += Time.deltaTime * Speed;
         }
     }
-
-
 }
-
-
-
