@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Add this if using TextMeshPro
+using TMPro;
 
 public class KeyManager : MonoBehaviour
 {
@@ -8,8 +8,7 @@ public class KeyManager : MonoBehaviour
     private int keysCollected = 0;
     private int totalKeys = 3;
 
-    public TextMeshProUGUI keyText; // Use TextMeshProUGUI for TMP
-    // public Text keyText; // Uncomment this if using Legacy Text UI
+    public TextMeshProUGUI keyText;
 
     private void Awake()
     {
