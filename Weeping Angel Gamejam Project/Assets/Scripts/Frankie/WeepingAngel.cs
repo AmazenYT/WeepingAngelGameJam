@@ -29,6 +29,7 @@ public class WeepingAngel : MonoBehaviour
     public AudioSource MetalArmor;
     public AudioSource HuntMusic;
     public AudioSource BackGroundTrack;
+    public AudioSource JumapScare;
 
     private void Start()
     {
@@ -131,6 +132,7 @@ public class WeepingAngel : MonoBehaviour
 
     IEnumerator KillPlayer()
     {
+        JumapScare.enabled = true;
         yield return new WaitForSeconds(jumpscareTime);
         SceneManager.LoadScene(sceneAfterDeath);
     }
