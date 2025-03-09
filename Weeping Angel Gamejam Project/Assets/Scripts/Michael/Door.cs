@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement; // Required for scene switching
 
 public class Door : MonoBehaviour
 {
@@ -21,7 +22,6 @@ public class Door : MonoBehaviour
 
     public void Open(Vector3 UserPosition)
     {
-      
         if (KeyManager.instance != null && KeyManager.instance.HasAllKeys())
         {
             if (!IsOpen)
@@ -67,6 +67,9 @@ public class Door : MonoBehaviour
             yield return null;
             time += Time.deltaTime * Speed;
         }
+
+        // Load the victory scene after animation completes
+        SceneManager.LoadScene("VictoryScene");
     }
 
     public void Close()
