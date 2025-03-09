@@ -1,5 +1,4 @@
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using TMPro;
 
 public class KeyManager : MonoBehaviour
@@ -46,5 +45,12 @@ public class KeyManager : MonoBehaviour
         {
             keyText.text = keysCollected + "/" + totalKeys + " Keys Collected";
         }
+    }
+
+    // 🔥 New method to destroy KeyManager when the door opens
+    public void DestroySelf()
+    {
+        Debug.Log("Destroying KeyManager");
+        Destroy(gameObject);
     }
 }
