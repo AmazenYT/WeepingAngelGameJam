@@ -8,13 +8,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/OutdoorsScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Menu.unity
     guid: 7e2e9ddc1f1383d4bab35e762daaccac
   - enabled: 1
+    path: Assets/Personal/Main Menu.unity
+    guid: a3e07add3c5c39c40b917c05edf37a39
+  - enabled: 1
+    path: Assets/Personal/Ryan.unity
+    guid: cef513979a016d34287ddc9c16a8ada2
+  - enabled: 1
+    path: Assets/Personal/Victory.unity
+    guid: fd1de1fc6471bc34a9ef7dfb035d9314
+  - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: 46f322f39eed50743b8387110752240d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Personal/Jake.unity
     guid: 8a325dda27b64af488bd30b77acda8df
   m_configObjects:

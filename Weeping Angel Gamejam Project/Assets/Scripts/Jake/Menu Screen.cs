@@ -19,7 +19,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
     public void begin()
     {
-        SceneManager.LoadScene("Jake");
+        SceneManager.LoadScene("Ryan");
     }
 
     public void Quit()
