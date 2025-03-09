@@ -7,7 +7,6 @@ public class WeepingAngel : MonoBehaviour
 {
     public NavMeshAgent ai;
     public Transform player;
-    //animation stuff
     public Animator aiAnim;
 
     public Camera playerCam, jumpscareCam;
@@ -23,9 +22,8 @@ public class WeepingAngel : MonoBehaviour
     private bool isRoaming = true;
     private Vector3 lastRoamDestination;
 
-    private NavMeshPath path; // Used for path validation
+    private NavMeshPath path;
 
-    //For Audio//
     public AudioSource MetalArmor;
     public AudioSource HuntMusic;
     public AudioSource BackGroundTrack;
@@ -34,9 +32,10 @@ public class WeepingAngel : MonoBehaviour
     private void Start()
     {
         ai.speed = aiSpeed / 2;
-        ai.avoidancePriority = 20; // Higher priority for avoiding obstacles
-        ai.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance; // Avoid walls properly
-        path = new NavMeshPath(); // Initialize path validation
+        ai.avoidancePriority = 20;
+        ai.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        path = new NavMeshPath();
+        Debug.Log("AI Started Roaming");
         StartCoroutine(Roam());
     }
 
@@ -46,6 +45,9 @@ public class WeepingAngel : MonoBehaviour
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCam);
         bool isVisible = GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds);
 
+        Debug.Log($"Distance to player: {distance}");
+        Debug.Log($"Is Visible: {isVisible}");
+
         if (distance <= detectionRadius)
         {
             isChasing = true;
@@ -54,6 +56,7 @@ public class WeepingAngel : MonoBehaviour
             MetalArmor.enabled = true;
             HuntMusic.enabled = true;
             BackGroundTrack.enabled = false;
+            Debug.Log("AI Entered Chase Mode");
         }
         else if (distance >= escapeDistance && !isRoaming)
         {
@@ -63,6 +66,7 @@ public class WeepingAngel : MonoBehaviour
             MetalArmor.enabled = false;
             HuntMusic.enabled = false;
             BackGroundTrack.enabled = true;
+            Debug.Log("AI Returned to Roaming");
         }
 
         if (isChasing)
@@ -76,22 +80,26 @@ public class WeepingAngel : MonoBehaviour
                 MetalArmor.enabled = false;
                 HuntMusic.enabled = false;
                 BackGroundTrack.enabled = true;
+                Debug.Log("AI Frozen Due to Visibility");
             }
             else
             {
                 if (NavMesh.CalculatePath(transform.position, player.position, NavMesh.AllAreas, path) && path.status == NavMeshPathStatus.PathComplete)
                 {
-                    ai.SetDestination(player.position); // Move only if path is valid
+                    ai.SetDestination(player.position);
                     aiAnim.speed = 1;
+                    Debug.Log("AI Chasing Player");
                 }
                 else
                 {
-                    ai.SetDestination(transform.position); // Stay still if no valid path
+                    ai.SetDestination(transform.position);
+                    Debug.Log("No Valid Path to Player");
                 }
             }
 
             if (!isVisible && distance <= catchDistance)
             {
+                Debug.Log("AI Caught the Player");
                 player.gameObject.SetActive(false);
                 jumpscareCam.gameObject.SetActive(true);
                 StartCoroutine(KillPlayer());
@@ -104,13 +112,13 @@ public class WeepingAngel : MonoBehaviour
         while (isRoaming)
         {
             Vector3 newRoamDestination = GetRandomNavMeshPoint(transform.position, roamRadius);
+            Debug.Log($"New Roam Destination: {newRoamDestination}");
 
             if (newRoamDestination != lastRoamDestination)
             {
                 ai.SetDestination(newRoamDestination);
                 lastRoamDestination = newRoamDestination;
             }
-
             yield return new WaitForSeconds(roamWaitTime);
         }
     }
@@ -124,9 +132,11 @@ public class WeepingAngel : MonoBehaviour
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomDirection, out hit, range, NavMesh.AllAreas))
             {
+                Debug.Log($"Found valid NavMesh point: {hit.position}");
                 return hit.position;
             }
         }
+        Debug.Log("Failed to find valid NavMesh point");
         return transform.position;
     }
 
