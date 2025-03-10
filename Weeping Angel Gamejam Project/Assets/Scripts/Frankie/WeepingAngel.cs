@@ -144,6 +144,7 @@ public class WeepingAngel : MonoBehaviour
     {
         JumapScare.enabled = true;
         yield return new WaitForSeconds(jumpscareTime);
-        SceneManager.LoadScene(sceneAfterDeath);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 }
