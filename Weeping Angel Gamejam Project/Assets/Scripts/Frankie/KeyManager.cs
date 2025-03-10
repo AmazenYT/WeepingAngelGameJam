@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class KeyManager : MonoBehaviour
 {
@@ -19,12 +20,38 @@ public class KeyManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
     private void Start()
     {
-        UpdateKeyUI();
+        AssignKeyText();
+        ResetKeys(); // Ensure keys are reset on start
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        AssignKeyText();
+        ResetKeys(); // Reset keys when a new scene loads
+    }
+
+    private void AssignKeyText()
+    {
+        if (keyText == null)
+        {
+            keyText = FindObjectOfType<TextMeshProUGUI>();
+        }
     }
 
     public void CollectKey()
@@ -47,7 +74,14 @@ public class KeyManager : MonoBehaviour
         }
     }
 
-    // 🔥 New method to destroy KeyManager when the door opens
+    public void ResetKeys()
+    {
+        keysCollected = 0;
+        PlayerPrefs.SetInt("KeysCollected", 0);
+        PlayerPrefs.Save();
+        UpdateKeyUI();
+    }
+
     public void DestroySelf()
     {
         Debug.Log("Destroying KeyManager");
